@@ -31,11 +31,17 @@
         <lombok.version>1.18.24</lombok.version>
         <junit.version>4.13.1</junit.version>
         <guava.version>31.0.1-jre</guava.version>
+        <fastjson2.version>2.0.25</fastjson2.version>
     </properties>
 
     <!--    父工程统一管理的依赖信息：即使在父工程配置了对依赖的管理，子工程需要使用具体哪一个依赖还是要明确配置（只是可以不用写版本号，写了采用子工程的）-->
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson2.version}</version>
+            </dependency>
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
@@ -60,6 +66,10 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+        </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
