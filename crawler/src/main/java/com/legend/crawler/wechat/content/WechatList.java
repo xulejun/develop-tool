@@ -1,4 +1,4 @@
-package com.legend.common.crawler.wechat;
+package com.legend.crawler.wechat.content;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.http.Header;
@@ -6,6 +6,7 @@ import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.legend.crawler.wechat.bean.WechatArticleBean;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -13,8 +14,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import static com.legend.common.crawler.wechat.WechatLogin.*;
-import static com.legend.common.crawler.wechat.bean.WechatResponseEnum.FREQ_CONTROL;
+import static com.legend.crawler.wechat.bean.WechatResponseEnum.*;
+import static com.legend.crawler.wechat.content.WechatLogin.*;
+
 
 /**
  * @author xlj

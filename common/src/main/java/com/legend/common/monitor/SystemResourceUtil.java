@@ -13,6 +13,8 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 /**
+ * 系统资源监控 hutool + oshi
+ *
  * @author legend xu
  * @date 2023/2/7
  */

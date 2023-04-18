@@ -1,8 +1,8 @@
-package com.legend.common.crawler.wechat;
+package com.legend.crawler.wechat.content;
 
 import cn.hutool.core.util.StrUtil;
+import com.legend.crawler.wechat.bean.WechatArticleBean;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -159,7 +159,7 @@ public class WechatDetail {
         final Elements parents = img.parents();
         img.remove();
         parents.forEach(parent -> {
-            if (StringUtils.isBlank(parent.html())) {
+            if (StrUtil.isBlank(parent.html())) {
                 parent.remove();
             }
         });

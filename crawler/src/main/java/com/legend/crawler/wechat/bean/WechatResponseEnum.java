@@ -1,4 +1,4 @@
-package com.legend.common.crawler.wechat.bean;
+package com.legend.crawler.wechat.bean;
 
 /**
  * 微信采集响应状态码

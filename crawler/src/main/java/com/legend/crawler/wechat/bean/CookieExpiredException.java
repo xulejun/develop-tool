@@ -1,4 +1,4 @@
-package com.legend.common.crawler.wechat;
+package com.legend.crawler.wechat.bean;
 
 /***
  * @description: cookies失效

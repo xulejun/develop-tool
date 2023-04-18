@@ -1,4 +1,4 @@
-package com.legend.common.crawler.wechat.ninevalence;
+package com.legend.crawler.wechat.ninevalence;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
@@ -9,21 +9,20 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.google.common.collect.Lists;
-import com.legend.common.crawler.wechat.CookieExpiredException;
-import com.legend.common.crawler.wechat.WechatArticleBean;
-import com.legend.common.crawler.wechat.WechatLogin;
 import com.legend.common.util.MailUtil;
+import com.legend.crawler.wechat.bean.CookieExpiredException;
+import com.legend.crawler.wechat.bean.WechatArticleBean;
+import com.legend.crawler.wechat.content.WechatLogin;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static com.legend.common.crawler.wechat.WechatLogin.*;
-import static com.legend.common.crawler.wechat.bean.WechatResponseEnum.*;
+import static com.legend.crawler.wechat.bean.WechatResponseEnum.*;
+import static com.legend.crawler.wechat.content.WechatLogin.*;
 
 /**
  * 微信公众号九价文章采集通知
@@ -46,8 +45,8 @@ public class AccountNineValenceNotice {
     @Autowired
     private MailUtil mailUtil;
 
-    @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+//    @Autowired
+//    private RedisTemplate<String, String> redisTemplate;
 
     /**
      * hashCookie 相关字段
@@ -119,7 +118,7 @@ public class AccountNineValenceNotice {
             // 数据处理
             dealData(articleJsonArray);
             // 记录采集次数
-            redisTemplate.opsForHash().increment(cookieKey, CRAWL_COUNT_HK, 1L);
+//            redisTemplate.opsForHash().increment(cookieKey, CRAWL_COUNT_HK, 1L);
             // 随机睡眠，保证账号安全
             TimeUnit.SECONDS.sleep(RandomUtil.randomLong(10, 30));
         }
@@ -133,28 +132,28 @@ public class AccountNineValenceNotice {
         log.info("文章标题={}，文章链接={}", title, articleUrl);
         // 文章标题 含有 九价 ，并且 redis 中不存在数据
         String setNineValenceArticleUrlKey = "nineValence.articleUrl";
-        boolean isNeed = title.contains("九价") && (!redisTemplate.opsForSet().isMember(setNineValenceArticleUrlKey, articleUrl));
+//        boolean isNeed = title.contains("九价") && (!redisTemplate.opsForSet().isMember(setNineValenceArticleUrlKey, articleUrl));
 
         // 邮件发送
-        if (isNeed) {
-            String[] addressee = sendTo.split(",");
-            String content = "<h1 style=\"margin-top: 60%;text-align: center\"><a href=\"" + articleUrl + "\">点击此处查看文章内容</a></h1>";
-            mailUtil.sendHtmlMail(sendFrom, addressee, title, content);
-
-            // 数据入库-redis
-            redisTemplate.opsForSet().add(setNineValenceArticleUrlKey, articleUrl);
-            WechatArticleBean articleBean = WechatArticleBean.builder().title(title).link(articleUrl).articleTime(articleTime).build();
-            String articleJsonStr = JSONUtil.toJsonStr(articleBean);
-            String setNineValenceArticleKey = "nineValence.article";
-            redisTemplate.opsForSet().add(setNineValenceArticleKey, articleJsonStr);
-        }
+//        if (isNeed) {
+//            String[] addressee = sendTo.split(",");
+//            String content = "<h1 style=\"margin-top: 60%;text-align: center\"><a href=\"" + articleUrl + "\">点击此处查看文章内容</a></h1>";
+//            mailUtil.sendHtmlMail(sendFrom, addressee, title, content);
+//
+//            // 数据入库-redis
+//            redisTemplate.opsForSet().add(setNineValenceArticleUrlKey, articleUrl);
+//            WechatArticleBean articleBean = WechatArticleBean.builder().title(title).link(articleUrl).articleTime(articleTime).build();
+//            String articleJsonStr = JSONUtil.toJsonStr(articleBean);
+//            String setNineValenceArticleKey = "nineValence.article";
+//            redisTemplate.opsForSet().add(setNineValenceArticleKey, articleJsonStr);
+//        }
     }
 
     public boolean resultCheck(String cookieKey, String response) {
         if (FREQ_CONTROL.getCode().equals(response)) {
             log.warn(FREQ_CONTROL.getMsg());
-            redisTemplate.opsForHash().putIfAbsent(cookieKey, LIMIT_TIME_HK, DateUtil.now());
-            redisTemplate.opsForHash().putIfAbsent(cookieKey, LIMIT_CRAWL_COUNT_HK, redisTemplate.opsForHash().get(cookieKey, CRAWL_COUNT_HK));
+//            redisTemplate.opsForHash().putIfAbsent(cookieKey, LIMIT_TIME_HK, DateUtil.now());
+//            redisTemplate.opsForHash().putIfAbsent(cookieKey, LIMIT_CRAWL_COUNT_HK, redisTemplate.opsForHash().get(cookieKey, CRAWL_COUNT_HK));
             return true;
         } else if (INVALID_SESSION.getCode().equals(response)) {
             log.warn(INVALID_SESSION.getMsg());
@@ -164,7 +163,7 @@ public class AccountNineValenceNotice {
                 mailUtil.sendHtmlMail(sendFrom, addressee, "微信公众号cookie失效", "请及时添加cookie");
             }
             // 记录cookie失效时间
-            redisTemplate.opsForHash().put(cookieKey, INVALID_TIME_HK, DateUtil.now());
+//            redisTemplate.opsForHash().put(cookieKey, INVALID_TIME_HK, DateUtil.now());
             invalidCount++;
             return true;
         }
@@ -173,9 +172,9 @@ public class AccountNineValenceNotice {
 
     private void cookieRecord(String cookieKey) {
         // cookie状态记录
-        if (!redisTemplate.hasKey(cookieKey)) {
-            redisTemplate.opsForHash().put(cookieKey, COOKIE_HK, cookie);
-            redisTemplate.opsForHash().put(cookieKey, CREATE_TIME_HK, DateUtil.now());
-        }
+//        if (!redisTemplate.hasKey(cookieKey)) {
+//            redisTemplate.opsForHash().put(cookieKey, COOKIE_HK, cookie);
+//            redisTemplate.opsForHash().put(cookieKey, CREATE_TIME_HK, DateUtil.now());
+//        }
     }
 }

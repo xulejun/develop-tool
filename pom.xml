@@ -22,6 +22,7 @@
     <!--    聚合的配置-->
     <modules>
         <module>common</module>
+        <module>crawler</module>
     </modules>
 
     <properties>
@@ -32,6 +33,8 @@
         <junit.version>4.13.1</junit.version>
         <guava.version>31.0.1-jre</guava.version>
         <fastjson2.version>2.0.25</fastjson2.version>
+        <!--        springboot 2.7.10 默认版本为 4.9.3-->
+        <okhttp.version>4.9.3</okhttp.version>
     </properties>
 
     <!--    父工程统一管理的依赖信息：即使在父工程配置了对依赖的管理，子工程需要使用具体哪一个依赖还是要明确配置（只是可以不用写版本号，写了采用子工程的）-->
@@ -63,9 +66,31 @@
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
             <artifactId>fastjson2</artifactId>

@@ -1,4 +1,6 @@
-package com.legend.common.crawler.wechat.bean;
+package com.legend.crawler.wechat.bean;
+
+import lombok.Data;
 
 import java.util.List;
 
@@ -8,6 +10,7 @@ import java.util.List;
  * @author legend xu
  * @String 2021/11/29
  */
+@Data
 public class MaternityCareAppletInfoDataList {
     private String schDate;
     private List<MaternityCareAppletData> schDateList;

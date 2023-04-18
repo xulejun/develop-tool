@@ -1,9 +1,10 @@
-package com.legend.common.crawler.wechat;
+package com.legend.crawler.wechat.content;
 
 import cn.hutool.http.Header;
 import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.legend.crawler.wechat.bean.CookieExpiredException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
 import org.apache.http.client.config.RequestConfig;
@@ -18,7 +19,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 
-import static com.legend.common.crawler.wechat.bean.WechatResponseEnum.SUCCESS_CODE;
+import static com.legend.crawler.wechat.bean.WechatResponseEnum.SUCCESS_CODE;
 
 
 /**

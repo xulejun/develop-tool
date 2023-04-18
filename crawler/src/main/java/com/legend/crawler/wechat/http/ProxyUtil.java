@@ -1,4 +1,4 @@
-package com.legend.common.crawler;
+package com.legend.crawler.wechat.http;
 
 import cn.hutool.json.JSONObject;
 import lombok.extern.slf4j.Slf4j;

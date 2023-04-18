@@ -1,4 +1,4 @@
-package com.legend.common.crawler;
+package com.legend.crawler.wechat.http;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 
