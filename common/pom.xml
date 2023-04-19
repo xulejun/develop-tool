@@ -102,8 +102,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- springboot项目打包的时候会生成两个jar包：一个是普通可被引用的jar包，另一个是springboot的可执行jar包。后者会将前者覆盖，但后者却不可以被别的模块引用。-->
+                <!--命名可执行jar名字，默认可执行Jar包与普通jar命名相同，前者会将后者覆盖，可执行Jar不能够被其他模块引用-->
+                <configuration>
+                    <classifier>exec</classifier>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>
