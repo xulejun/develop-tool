@@ -1,4 +1,4 @@
-package com.legend.common.util;
+package com.legend.web.cron;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +24,6 @@ public class CronExpressionUtil {
      * 存储SpiderJob的ID：对应的定时任务
      */
     private final ConcurrentHashMap<Long, ScheduledFuture> tasksMap = new ConcurrentHashMap<>();
-
-    @Bean
-    public ThreadPoolTaskScheduler taskExecutor() {
-        ThreadPoolTaskScheduler executor = new ThreadPoolTaskScheduler();
-        executor.setPoolSize(1000);
-        executor.setThreadNamePrefix("cronTask-");
-        return executor;
-    }
 
     @Autowired
     private ThreadPoolTaskScheduler threadPoolTaskScheduler;

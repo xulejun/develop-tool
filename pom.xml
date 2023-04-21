@@ -23,6 +23,7 @@
     <modules>
         <module>common</module>
         <module>crawler</module>
+        <module>web</module>
     </modules>
 
     <properties>
