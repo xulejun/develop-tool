@@ -58,6 +58,7 @@ public class SkillProductAddJob {
             BoundHashOperations hashOps = redisTemplate.boundHashOps(SKILL_PRODUCT_PREFIX);
             // 商品添加
             skillProducts.forEach(product -> {
+
                 if (!hashOps.hasKey(product.getId().toString())) {
                     // 还可以将场次信息添加到缓存里（K：开始时间-结束时间，V：商品数量）
                     // 引入分布式信号量，秒杀商品关键，（K：随机码，V：商品库存）
