@@ -2,7 +2,7 @@ package com.legend.web.controller;
 
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
-import com.legend.web.bean.User;
+import com.legend.common.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,7 @@
 package com.legend.web.service;
 
 
-import com.legend.web.bean.Product;
+import com.legend.common.entity.Product;
 
 import java.util.List;
 

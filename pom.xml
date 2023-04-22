@@ -24,6 +24,7 @@
         <module>common</module>
         <module>crawler</module>
         <module>web</module>
+        <module>redis</module>
     </modules>
 
     <properties>
@@ -37,11 +38,17 @@
         <!--        springboot 2.7.10 默认版本为 4.9.3-->
         <okhttp.version>4.9.3</okhttp.version>
         <selenium.version>3.141.59</selenium.version>
+        <redisson.version>3.19.0</redisson.version>
     </properties>
 
     <!--    父工程统一管理的依赖信息：即使在父工程配置了对依赖的管理，子工程需要使用具体哪一个依赖还是要明确配置（只是可以不用写版本号，写了采用子工程的）-->
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.seleniumhq.selenium</groupId>
                 <artifactId>selenium-java</artifactId>

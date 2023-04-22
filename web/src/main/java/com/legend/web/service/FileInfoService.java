@@ -2,7 +2,7 @@ package com.legend.web.service;
 
 
 
-import com.legend.web.bean.FileInfo;
+import com.legend.common.entity.FileInfo;
 
 import java.util.List;
 

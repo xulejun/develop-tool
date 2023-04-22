@@ -1,6 +1,6 @@
 package com.legend.web.controller;
 
-import com.legend.web.bean.User;
+import com.legend.common.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

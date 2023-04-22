@@ -1,6 +1,6 @@
 package com.legend.web.service.impl;
 
-import com.legend.web.bean.User;
+import com.legend.common.entity.User;
 import com.legend.web.dao.UserDao;
 import com.legend.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

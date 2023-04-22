@@ -1,6 +1,6 @@
 package com.legend.web.service.impl;
 
-import com.legend.web.bean.FileInfo;
+import com.legend.common.entity.FileInfo;
 import com.legend.web.dao.FileInfoDao;
 import com.legend.web.service.FileInfoService;
 import org.springframework.beans.factory.annotation.Autowired;

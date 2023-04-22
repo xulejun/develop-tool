@@ -1,6 +1,6 @@
 package com.legend.web.dao;
 
-import com.legend.web.bean.User;
+import com.legend.common.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

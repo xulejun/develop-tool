@@ -1,7 +1,7 @@
 package com.legend.web.controller;
 
-import com.legend.web.bean.Result;
-import com.legend.web.bean.User;
+import com.legend.web.model.Result;
+import com.legend.common.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

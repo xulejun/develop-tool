@@ -1,4 +1,4 @@
-package com.legend.web.bean;
+package com.legend.common.entity;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.legend.web.dao.ProductDao">
-    <resultMap id="BaseResultMap" type="com.legend.web.bean.Product">
+    <resultMap id="BaseResultMap" type="com.legend.common.entity.Product">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="price" jdbcType="DECIMAL" property="price"/>
@@ -16,7 +16,7 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
 
-    <select id="selectAll" resultType="com.legend.web.bean.Product">
+    <select id="selectAll" resultType="com.legend.common.entity.Product">
         select
         <include refid="Base_Column_List"/>
         from product
@@ -27,13 +27,13 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.legend.web.bean.Product"
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.legend.common.entity.Product"
             useGeneratedKeys="true">
     insert into product (`name`, price)
     values (#{name,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL})
   </insert>
 
-    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.legend.web.bean.Product"
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.legend.common.entity.Product"
             useGeneratedKeys="true">
         insert into product
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -54,7 +54,7 @@
         </trim>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.legend.web.bean.Product">
+    <update id="updateByPrimaryKeySelective" parameterType="com.legend.common.entity.Product">
         update product
         <set>
             <if test="name != null">
@@ -67,14 +67,14 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="com.legend.web.bean.Product">
+    <update id="updateByPrimaryKey" parameterType="com.legend.common.entity.Product">
     update product
     set `name` = #{name,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-    <select id="selectSkillProduct" resultType="com.legend.web.bean.Product">
+    <select id="selectSkillProduct" resultType="com.legend.common.entity.Product">
         select <include refid="Base_Column_List"></include> from product where price between 1000 and 2000
     </select>
 </mapper>

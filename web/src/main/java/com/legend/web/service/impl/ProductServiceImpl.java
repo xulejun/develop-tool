@@ -1,6 +1,6 @@
 package com.legend.web.service.impl;
 
-import com.legend.web.bean.Product;
+import com.legend.common.entity.Product;
 import com.legend.web.dao.ProductDao;
 import com.legend.web.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

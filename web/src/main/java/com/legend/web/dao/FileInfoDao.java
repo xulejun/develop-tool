@@ -1,7 +1,7 @@
 package com.legend.web.dao;
 
 
-import com.legend.web.bean.FileInfo;
+import com.legend.common.entity.FileInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

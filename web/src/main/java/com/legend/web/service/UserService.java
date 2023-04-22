@@ -1,7 +1,7 @@
 package com.legend.web.service;
 
 
-import com.legend.web.bean.User;
+import com.legend.common.entity.User;
 
 /**
  * @author xlj

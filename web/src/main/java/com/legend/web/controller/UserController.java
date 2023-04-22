@@ -1,6 +1,6 @@
 package com.legend.web.controller;
 
-import com.legend.web.bean.User;
+import com.legend.common.entity.User;
 import com.legend.web.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

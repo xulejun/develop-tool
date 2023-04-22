@@ -2,7 +2,7 @@ package com.legend.web.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.legend.web.bean.Product;
+import com.legend.common.entity.Product;
 import com.legend.web.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

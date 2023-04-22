@@ -1,4 +1,4 @@
-package com.legend.web.bean;
+package com.legend.web.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
