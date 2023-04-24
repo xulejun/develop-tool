@@ -1,4 +1,4 @@
-package com.legend.redis.constant;
+package com.legend.redis.rank;
 
 /**
  * redis的热点排行常量

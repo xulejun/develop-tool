@@ -16,7 +16,7 @@ import javax.security.auth.message.AuthException;
  * @date 2022/1/14
  */
 @Slf4j
-@RestControllerAdvice(basePackages = "com.xlj.tools.controller")
+@RestControllerAdvice(basePackages = "com.legend.web.controller")
 public class GlobalDealException {
     @ExceptionHandler(NoHandlerFoundException.class)
     public Result handlerNoFoundException(Exception e) {

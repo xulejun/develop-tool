@@ -1,4 +1,4 @@
-package com.legend.redis.config;
+package com.legend.redis.redisson;
 
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;

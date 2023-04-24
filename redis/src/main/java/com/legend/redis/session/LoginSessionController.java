@@ -1,4 +1,4 @@
-package com.legend.redis.controller;
+package com.legend.redis.session;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;

@@ -1,4 +1,4 @@
-package com.legend.redis.job;
+package com.legend.redis.skill;
 
 import cn.hutool.core.util.IdUtil;
 import com.google.common.collect.Lists;

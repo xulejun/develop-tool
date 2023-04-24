@@ -1,4 +1,4 @@
-package com.legend.redis.job;
+package com.legend.redis.rank;
 
 import cn.hutool.core.util.RandomUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static com.legend.redis.constant.RankConstant.*;
+import static com.legend.redis.rank.RankConstant.*;
 
 /**
  * redis 定时合并热点数据

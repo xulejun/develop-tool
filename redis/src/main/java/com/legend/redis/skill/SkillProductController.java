@@ -1,4 +1,4 @@
-package com.legend.redis.controller;
+package com.legend.redis.skill;
 
 import com.legend.common.entity.Product;
 import lombok.extern.slf4j.Slf4j;

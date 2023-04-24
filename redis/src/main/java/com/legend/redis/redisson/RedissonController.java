@@ -1,4 +1,4 @@
-package com.legend.redis.controller;
+package com.legend.redis.redisson;
 
 import cn.hutool.core.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;

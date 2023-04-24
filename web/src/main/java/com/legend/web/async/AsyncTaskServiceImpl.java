@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Service
 public class AsyncTaskServiceImpl implements AsyncTaskService {
-    @Async
+    @Async("myThreadPool")      // 使用自定义的线程池执行
     @Override
     public void asyncTask1(Integer x) {
         try {
@@ -26,7 +26,7 @@ public class AsyncTaskServiceImpl implements AsyncTaskService {
         log.info("异步任务方法1执行了：{}", x);
     }
 
-    @Async
+    @Async("myThreadPool")
     @Override
     public void asyncTask2(Integer y) {
         log.info("异步任务方法2执行了：{}", y);
