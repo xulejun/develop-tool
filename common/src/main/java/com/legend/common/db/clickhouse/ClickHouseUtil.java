@@ -1,4 +1,4 @@
-package com.legend.common.clickhouse;
+package com.legend.common.db.clickhouse;
 
 import com.clickhouse.jdbc.ClickHouseDataSource;
 import com.google.common.collect.Lists;

@@ -1,4 +1,4 @@
-package com.legend.common.clickhouse;
+package com.legend.common.db.clickhouse;
 
 import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;

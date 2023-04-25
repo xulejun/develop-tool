@@ -1,4 +1,4 @@
-package com.legend.common.clickhouse;
+package com.legend.common.db.clickhouse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
