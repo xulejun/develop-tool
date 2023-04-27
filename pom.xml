@@ -25,6 +25,7 @@
         <module>crawler</module>
         <module>web</module>
         <module>redis</module>
+        <module>mq</module>
     </modules>
 
     <properties>
