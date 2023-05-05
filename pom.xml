@@ -26,6 +26,7 @@
         <module>web</module>
         <module>redis</module>
         <module>mq</module>
+        <module>elasticsearch</module>
     </modules>
 
     <properties>
