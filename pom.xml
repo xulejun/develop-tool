@@ -28,6 +28,7 @@
         <module>mq</module>
         <module>elasticsearch</module>
         <module>shiro</module>
+        <module>quartz</module>
     </modules>
 
     <properties>
