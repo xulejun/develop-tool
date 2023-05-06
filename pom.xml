@@ -27,6 +27,7 @@
         <module>redis</module>
         <module>mq</module>
         <module>elasticsearch</module>
+        <module>shiro</module>
     </modules>
 
     <properties>
