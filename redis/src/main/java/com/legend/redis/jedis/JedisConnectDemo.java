@@ -1,15 +1,9 @@
 package com.legend.redis.jedis;
 
 import cn.hutool.core.util.StrUtil;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Value;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
-import redis.clients.jedis.JedisSentinelPool;
+import redis.clients.jedis.*;
 
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
