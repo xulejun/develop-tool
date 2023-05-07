@@ -25,6 +25,7 @@ public class JedisConnectDemo {
     public static void main(String[] args) throws Exception {
         // jedis 单节点
         try (Jedis jedis = getSingleJedis();) {
+            Pipeline pipelined = jedis.pipelined();
             jedis.get("hello");
         }
 

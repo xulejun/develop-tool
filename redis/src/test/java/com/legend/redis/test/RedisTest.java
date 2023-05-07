@@ -8,9 +8,11 @@ import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Tuple;
 
 import java.math.BigDecimal;
@@ -29,27 +31,28 @@ import java.util.concurrent.TimeUnit;
 @SpringBootTest(classes = RedisApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class RedisTest {
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     @Autowired
     private RedissonClient redissonClient;
 
+    @Autowired
+    private JedisPool myJedisPool;
+
     @Test
-    public void testLock() throws Exception{
+    public void testLock() throws Exception {
         RLock lock = redissonClient.getLock("my_lock");
         lock.lock();
         TimeUnit.SECONDS.sleep(40);
     }
 
     @Test
-    public void test() {
-        String a = null;
-        Optional<String> hello = Optional.ofNullable(a);
+    public void testRedis() throws Exception {
+        Object hello = redisTemplate.opsForValue().get("hello");
         System.out.println(hello);
-        if (hello.isPresent()) {
-            System.out.println("存在");
-        } else {
-            System.out.println("不存在");
-        }
+
+        Jedis resource = myJedisPool.getResource();
+        String s = resource.get("hello");
+        System.out.println(s);
     }
 }

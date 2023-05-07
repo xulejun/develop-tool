@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 /**
  * @author lejunxu
  */
-@EnableScheduling
+//@EnableScheduling
 @SpringBootApplication
 public class RedisApplication {
 
