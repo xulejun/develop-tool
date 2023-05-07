@@ -24,21 +24,21 @@ public class JedisConnectDemo {
 
     public static void main(String[] args) throws Exception {
         // jedis 单节点
-        Jedis jedis = getSingleJedis();
-
-        jedis.close();
+        try (Jedis jedis = getSingleJedis();) {
+            jedis.get("hello");
+        }
 
         // jedis 连接池
         JedisPool jedisPool = getJedisPool(null);
-        Jedis jedisPoolResource = jedisPool.getResource();
-
-        jedisPoolResource.close();
+        try (Jedis jedisPoolResource = jedisPool.getResource();) {
+            jedisPoolResource.get("hello");
+        }
 
         // jedis 哨兵模式
         JedisSentinelPool sentinelPool = getJedisSentinelPool();
-        Jedis sentinelPoolResource = sentinelPool.getResource();
-
-        sentinelPoolResource.close();
+        try (Jedis sentinelPoolResource = sentinelPool.getResource();) {
+            sentinelPoolResource.get("hello");
+        }
     }
 
     /**
