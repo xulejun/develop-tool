@@ -76,21 +76,3 @@
 4. 修复完成后，重新执行发布流程
 
 *由于 portal 没有代码变更，则只需要在 Redis 加密后，修改服务器上的配置文件，再进行重启即可*
-
-# 3. 所涉及到的命令
-## 3.1 Redis 无需重启修改密码持久化到配置文件
-```shell
-config set requirepass 123456
-auth 123456
-config rewrite
-config get requirepass
-```
-## 3.2 配置文件备份 / 重命名
-```shell
-mv Redis.properties Redis.properties.back1
-mv Redis.properties.back Redis.properties
-```
-## 3.3 curl 带 header 请求验证
-```shell
-curl localhost:8080/redis/auth -X GET  -H "Authorization: Basic YWRtaW4uZGF0YWlucHV0OmFjODA2MjYwZThiZGViZmU0MTMyNTUxZTQwZjc1ZjRl"
-```
