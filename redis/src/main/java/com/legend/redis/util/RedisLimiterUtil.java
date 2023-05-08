@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * redis限流器
+ * Redis + Lua 实现令牌桶算法（参考 Spring Cloud Gateway）
  *
  * @author lejunxu
  */
