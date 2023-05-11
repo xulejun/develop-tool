@@ -45,6 +45,7 @@ public class RedisLimiterUtil {
     public boolean isAllowedByJedis(String id, String rate, String capacity, String tokens, Jedis jedis) {
         String scriptLoad = jedis.scriptLoad(SCRIPT);
         Object result = jedis.evalsha(scriptLoad, getKey(id), Arrays.asList(rate, capacity, String.valueOf(Instant.now().getEpochSecond()), tokens));
+        jedis.close();
         return SUCCESS_FLAG.equals(result);
     }
 

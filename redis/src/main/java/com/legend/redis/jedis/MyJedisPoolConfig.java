@@ -17,8 +17,6 @@ import java.time.Duration;
 @Configuration
 @PropertySource("classpath:jedis.properties")
 public class MyJedisPoolConfig {
-    @Value("${spring.redis.jedis.pool.max-idle}")
-    private int maxIdle;
 
     @Value("${jedis.host}")
     private String host;
@@ -31,6 +29,9 @@ public class MyJedisPoolConfig {
 
     @Value("${spring.redis.jedis.pool.max-active}")
     private int maxActive;
+
+    @Value("${spring.redis.jedis.pool.max-idle}")
+    private int maxIdle;
 
     @Value("${spring.redis.jedis.pool.min-idle}")
     private int minIdle;
