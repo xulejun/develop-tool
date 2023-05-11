@@ -1,7 +1,7 @@
 **Redis 无需重启修改密码 & 持久化到配置文件**
 ```shell
-config set requirepass 123456
-auth 123456
+config set requirepass Octopus123@
+auth Octopus123@
 config rewrite
 config get requirepass
 ```

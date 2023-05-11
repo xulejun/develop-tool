@@ -20,26 +20,25 @@ public class JedisConnectDemo {
     /**
      * 密码不能为空串，否则也报错
      */
-    private static final String PASSWORD = null;
+    private static final String PASSWORD = "Octopus123@";
 
     public static void main(String[] args) throws Exception {
         // jedis 单节点
-        try (Jedis jedis = getSingleJedis();) {
-            Pipeline pipelined = jedis.pipelined();
-            jedis.get("hello");
+        try (Jedis jedis = getSingleJedis(null);) {
+            System.out.println(jedis.get("hello"));
         }
 
-        // jedis 连接池
-        JedisPool jedisPool = getJedisPool(null);
-        try (Jedis jedisPoolResource = jedisPool.getResource();) {
-            jedisPoolResource.get("hello");
-        }
-
-        // jedis 哨兵模式
-        JedisSentinelPool sentinelPool = getJedisSentinelPool();
-        try (Jedis sentinelPoolResource = sentinelPool.getResource();) {
-            sentinelPoolResource.get("hello");
-        }
+//        // jedis 连接池
+//        JedisPool jedisPool = getJedisPool(null);
+//        try (Jedis jedisPoolResource = jedisPool.getResource();) {
+//            jedisPoolResource.get("hello");
+//        }
+//
+//        // jedis 哨兵模式
+//        JedisSentinelPool sentinelPool = getJedisSentinelPool();
+//        try (Jedis sentinelPoolResource = sentinelPool.getResource();) {
+//            sentinelPoolResource.get("hello");
+//        }
     }
 
     /**
@@ -47,10 +46,21 @@ public class JedisConnectDemo {
      *
      * @return
      */
-    public static Jedis getSingleJedis() {
-        Jedis jedis = new Jedis("127.0.0.1", 6379);
-        if (StrUtil.isNotBlank(PASSWORD)) {
-            jedis.auth(PASSWORD);
+    public static Jedis getSingleJedis(String address) {
+        Jedis jedis;
+        if (StrUtil.isBlank(address)) {
+            jedis = new Jedis("127.0.0.1", 6379);
+            if (StrUtil.isNotBlank(PASSWORD)) {
+                jedis.auth(PASSWORD);
+            }
+        } else {
+            String[] split = address.split(":");
+            String ip = split[0];
+            int port = Integer.parseInt(split[1]);
+            jedis = new Jedis(ip, port);
+            if (split.length > 2) {
+                jedis.auth(split[2]);
+            }
         }
         return jedis;
     }
@@ -72,7 +82,7 @@ public class JedisConnectDemo {
         // 最小空闲连接数, 默认0
         jedisPoolConfig.setMinIdle(5);
         // 最大等待时间
-        jedisPoolConfig.setMaxWait(Duration.ofMillis(30000));
+        jedisPoolConfig.setMaxWait(Duration.ofMillis(15000));
 
         String[] split = address.split(":");
         if (StrUtil.isNotBlank(address)) {
