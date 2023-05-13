@@ -20,7 +20,7 @@ import java.util.Map;
  * @author xlj
  * @date 2021/7/7
  */
-@Configuration
+//@Configuration
 public class XssFilterConfig {
     @Value("${xss.enabled}")
     private String enabled;
