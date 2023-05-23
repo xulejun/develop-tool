@@ -30,3 +30,8 @@ info memory
 ```shell
 ./redis-server  /opt/app/redis/etc/redis11224.conf --port 11224
 ```
+
+**Redis 模糊删除 key**
+```shell
+./redis-cli -h 127.0.0.1 -p 6379 -a 123456 keys "hello*" | xargs ./redis-cli -h 127.0.0.1 -p 6379 -a 123456 del
+```
