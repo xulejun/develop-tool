@@ -3,9 +3,7 @@ package com.legend.common.util;
 import java.io.IOException;
 import java.io.StringReader;
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * 转换工具
@@ -48,5 +46,20 @@ public class ConvertUtil {
             }
         }
         return o;
+    }
+
+    /**
+     * 数组转集合
+     */
+    public static void arrToList() {
+        //注意这个List不是Collections包内的List,而是util包里面的List接口
+        String[] arr = {"fgx", "lzy"};
+        ArrayList<String> list = new ArrayList<>(arr.length);
+        Collections.addAll(list, arr);
+        System.out.println(list.toString());
+    }
+
+    public static void main(String[] args) {
+        arrToList();
     }
 }
