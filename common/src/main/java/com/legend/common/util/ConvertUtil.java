@@ -1,9 +1,13 @@
 package com.legend.common.util;
 
+import com.beust.jcommander.internal.Lists;
+import com.legend.common.entity.User;
+
 import java.io.IOException;
 import java.io.StringReader;
 import java.lang.reflect.Field;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 转换工具
@@ -59,7 +63,24 @@ public class ConvertUtil {
         System.out.println(list.toString());
     }
 
+    /**
+     * list转map
+     */
+    public static void listToMap() {
+        List<User> list = Lists.newArrayList();
+        User xlj1 = User.builder().id(1).name("xlj1").build();
+        User xlj2 = User.builder().id(2).name("xlj2").build();
+        User xlj3 = User.builder().id(3).name("xlj3").build();
+        list.add(xlj1);
+        list.add(xlj2);
+        list.add(xlj3);
+        Map<Integer, User> map = list.stream().collect(Collectors.toMap(User::getId, t -> t));
+        System.out.println(map);
+    }
+
+
     public static void main(String[] args) {
-        arrToList();
+//        arrToList();
+        listToMap();
     }
 }
