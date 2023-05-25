@@ -1,13 +1,12 @@
 package com.legend.common.compress;
 
-import cn.hutool.core.codec.Base64;
-import cn.hutool.json.JSONUtil;
-import com.alibaba.fastjson2.JSON;
-import com.alibaba.fastjson2.JSONObject;
+import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.zip.*;
 
 /**
@@ -53,20 +52,20 @@ public class CompressUtil {
                 "    },\n" +
                 "    \"level\": \"P0\"\n" +
                 "}";
-        Task task = JSONUtil.toBean(sourceData, Task.class);
-        JSONObject json = (JSONObject) JSON.toJSON(task);
-        byte[] bytes = json.toString().getBytes();
-        log.info("对象的 bytes 大小：{} \t 对象 String：{}", task.toString().getBytes().length, task.toString());
-        log.info("对象转 Json 后的大小：{} \t Json：{}", json.toString().getBytes().length, json.toString());
-
-        byte[] compress1 = gzipCompress(bytes);
-        log.info("直接压缩后的长度：{}", compress1.length);
-
-        String encode = Base64.encode(bytes);
-        log.info("Base64 编码后的长度：{}", encode.getBytes().length);
-
-        byte[] compress = gzipCompress(encode.getBytes());
-        log.info("压缩 Base64 编码后的长度：{}", compress.length);
+//        Task task = JSONUtil.toBean(sourceData, Task.class);
+//        JSONObject json = (JSONObject) JSON.toJSON(task);
+//        byte[] bytes = json.toString().getBytes();
+//        log.info("对象的 bytes 大小：{} \t 对象 String：{}", task.toString().getBytes().length, task.toString());
+//        log.info("对象转 Json 后的大小：{} \t Json：{}", json.toString().getBytes().length, json.toString());
+//
+//        byte[] compress1 = gzipCompress(bytes);
+//        log.info("直接压缩后的长度：{}", compress1.length);
+//
+//        String encode = Base64.encode(bytes);
+//        log.info("Base64 编码后的长度：{}", encode.getBytes().length);
+//
+//        byte[] compress = gzipCompress(encode.getBytes());
+//        log.info("压缩 Base64 编码后的长度：{}", compress.length);
 
 
 //        TimeInterval timer = DateUtil.timer();
@@ -96,9 +95,53 @@ public class CompressUtil {
     }
 
     /**
-     * 文本数据 gzip 压缩
+     * 文本数据gzip压缩-String
      */
-    public static byte[] gzipCompress(byte[] data) {
+    public static String gzipCompressByString(String text) {
+        if (StrUtil.isEmpty(text)) {
+            return null;
+        }
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        try (GZIPOutputStream gzipOutputStream = new GZIPOutputStream(byteArrayOutputStream)) {
+            gzipOutputStream.write(text.getBytes(StandardCharsets.UTF_8));
+            gzipOutputStream.flush();
+            gzipOutputStream.finish();
+        } catch (Exception e) {
+            log.warn("", e);
+            return null;
+        }
+        return Base64.getEncoder().encodeToString(byteArrayOutputStream.toByteArray());
+    }
+
+    /**
+     * 文本数据gzip解压-String
+     */
+    public static String gzipDecompressByString(String text) {
+        if (StrUtil.isEmpty(text)) {
+            return null;
+        }
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(Base64.getDecoder().decode(text));
+        try (GZIPInputStream gzipInputStream = new GZIPInputStream(byteArrayInputStream)) {
+            byte[] buffer = new byte[256];
+            int len;
+            while ((len = gzipInputStream.read(buffer)) != -1) {
+                byteArrayOutputStream.write(buffer, 0, len);
+            }
+        } catch (Exception e) {
+            log.warn("", e);
+            return null;
+        }
+
+        return byteArrayOutputStream.toString();
+    }
+
+    /**
+     * 文本数据 gzip 压缩
+     *
+     * @return
+     */
+    public static String gzipCompress(byte[] data) {
         if (data.length == 0) {
             return null;
         }
@@ -111,7 +154,7 @@ public class CompressUtil {
             log.warn("", e);
             return null;
         }
-        return byteArrayOutputStream.toByteArray();
+        return byteArrayOutputStream.toString();
     }
 
     /**
@@ -124,6 +167,7 @@ public class CompressUtil {
             return null;
         }
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
         ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(data);
         try (GZIPInputStream inputStream = new GZIPInputStream(byteArrayInputStream)) {
             byte[] buffer = new byte[1024];
