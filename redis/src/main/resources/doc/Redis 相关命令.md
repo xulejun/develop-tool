@@ -35,3 +35,8 @@ info memory
 ```shell
 ./redis-cli -h 127.0.0.1 -p 6379 -a 123456 keys "hello*" | xargs ./redis-cli -h 127.0.0.1 -p 6379 -a 123456 del
 ```
+
+**Redis 查看当前key的占用大小（byte）**
+```shell
+memory usage keyName
+```
