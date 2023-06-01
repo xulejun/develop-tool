@@ -64,6 +64,18 @@ public class ConvertUtil {
     }
 
     /**
+     * 集合转数组
+     */
+    public static void listToArr() {
+        //注意这个List不是Collections包内的List,而是util包里面的List接口
+        ArrayList<String> list = new ArrayList<>();
+        list.add("a");
+        list.add("b");
+        String[] array = list.toArray(new String[0]);
+        System.out.println(Arrays.toString(array));
+    }
+
+    /**
      * list转map
      */
     public static void listToMap() {
