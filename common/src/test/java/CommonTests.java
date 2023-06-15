@@ -37,15 +37,8 @@ import static com.legend.common.util.JsonReplaceUtil.jsonFilter;
  */
 @Slf4j
 public class CommonTests {
-    private static List<?> result = new ArrayList<>();
-
-
 
     public static void main(String[] args) throws Exception {
-        System.out.println("xlj,jjy".contains("xlj"));
     }
 
-}
-
-class TestImpl extends TestBase {
 }
