@@ -1,9 +1,6 @@
 package com.legend.common.juc;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * Callable接口案例
@@ -47,7 +44,7 @@ public class CallableDemo {
         new Thread(futureTask, "B").start();
 
         // 1. 直接调用 get 方法，非常容易导致阻塞（一旦调用，非要得到计算结果才会中断，不论是否完成）
-         // System.out.println(futureTask.get());
+//          System.out.println(futureTask.get());
 
         // 2. 建议使用 isDone 方法，轮询的方式获取计算结果
         while (true) {
@@ -58,6 +55,8 @@ public class CallableDemo {
                 TimeUnit.SECONDS.sleep(1);
             }
         }
+        // 必须得等 futureTask 任务执行完毕，才会执行主线程（futureTask.get 会阻塞主线程）
+        // 如果不想阻塞主线程运行，参考 CompletableFutureDemo 写法
         System.out.println("计算完成");
     }
 }

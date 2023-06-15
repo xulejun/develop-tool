@@ -6,6 +6,10 @@ import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
+ * LockSupport是一个线程阻塞工具类，所有的方法都是静态方法，可以让线程在任意位置阻塞（park），阻塞之后也有对应的唤醒方法（unpark）
+ * 底层调用的是Unsafe中的native代码
+ * 使用了一种名为Permit（许可）的概念来做到阻塞和唤醒线程的功能，每个线程都有一个许可（permit）
+ *
  * @author legend xu
  * @date 2022/12/28
  */

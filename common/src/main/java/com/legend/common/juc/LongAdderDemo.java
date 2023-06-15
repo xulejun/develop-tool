@@ -11,6 +11,11 @@ import java.util.concurrent.atomic.LongAdder;
  * 大数据高并发下（5000 w），测试 4 种方法的性能
  * synchronized 、 AtomicLong 、 LongAdder 、 LongAccumulator
  *
+ * LongAdder在高并发的场景下会比 AtomicLong 具有更好的性能，代价是消耗更多的内存空间（空间换时间）
+ * LongAdder采用分段的方式降低并发冲突的概率，通过维护一个基准值base和 Cell 数组
+ *  当没有出现多线程竞争的情况，线程会直接对base里面的value进行修改
+ *  当多线程的时候，那么LongAdder会初始化一个cell数组，然后对每个线程获取对应的hash值，最后会将所有cell单元格的value和base中的value进行累加求和得到最终的值
+ *
  * @author legend xu
  * @date 2023/1/5
  */

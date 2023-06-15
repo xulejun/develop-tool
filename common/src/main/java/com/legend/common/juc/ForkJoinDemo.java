@@ -9,6 +9,9 @@ import java.util.concurrent.RecursiveTask;
  * ForkJoin分支合并框架
  * ForkJoinPool、ForkJoinTask、Recursive（递归）Task
  * 核心思想：通过递归将一个线程不断fork拆分多个子线程，最后join合并，继承RecursiveTask抽象类，实现computer方法
+ * 类似于单机版的 map-reduce，都是采用分治算法，同时采取工作窃取算法（避免工作线程由于拆分了任务之后的join等待过程）
+ * ForkJoinPool中内置了一个WorkQueue数组，一个WorkQueue对应着一个线程。当一个线程执行完其对应的WorkQueue中的任务中时，会窃取其他WorkQueue中的任务来执行
+ * 其中WorkQueue是一个双端队列，当前线程会从一端获取和添加任务，而其他线程会从队列的另一端来窃取任务，进一步降低了冲突
  *
  * @author xlj
  * @date 2020/10/27 22:44

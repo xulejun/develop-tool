@@ -26,6 +26,7 @@ public class MyThreadPoolDemo {
                 2L,
                 TimeUnit.SECONDS,
                 new LinkedBlockingDeque<>(3),
+                // new ArrayBlockingQueue<>(3),               // 效率比 LinkedBlockingDeque，详细区别参考 BlockQueueDemo.java
                 Executors.defaultThreadFactory(),
                 // ThreadFactoryBuilder.create().build(),    // hutool、Appache-common、guava 都可创建
 

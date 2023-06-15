@@ -38,6 +38,4 @@ public class VolatileDemo {
         // number改变时结束
         System.out.println(Thread.currentThread().getName() + " is over");
     }
-
-
 }

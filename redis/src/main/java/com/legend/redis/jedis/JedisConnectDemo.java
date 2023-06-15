@@ -1,11 +1,14 @@
 package com.legend.redis.jedis;
 
 import cn.hutool.core.util.StrUtil;
+import com.google.common.collect.Lists;
+import com.google.gson.Gson;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import redis.clients.jedis.*;
 
+import java.io.IOException;
 import java.time.Duration;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * jedis连接Redis哨兵模式
@@ -21,11 +24,26 @@ public class JedisConnectDemo {
      * 密码不能为空串，否则也报错
      */
     private static final String PASSWORD = "Octopus123@";
+//    private static final String PASSWORD = null;
 
     public static void main(String[] args) throws Exception {
         // jedis 单节点
-        try (Jedis jedis = getSingleJedis(null);) {
-            System.out.println(jedis.get("hello"));
+        ArrayList<@Nullable Object> list = Lists.newArrayList();
+        try (Jedis jedis = getSingleJedis("10.128.188.44:6379:Octopus123@");) {
+            String searchKey = "oct:gateway:account:saimen:*:*";
+            Pipeline pipeline = jedis.pipelined();
+            Response<Set<String>> keysResponse = pipeline.keys(searchKey);
+            pipeline.close();
+            pipeline.sync();
+            ArrayList<String> keyList = new ArrayList<>(keysResponse.get());
+            String[] keyArray = new String[keyList.size()];
+            keyList.toArray(keyArray);
+            Response<List<String>> valueResponse = pipeline.mget(keyArray);
+            pipeline.close();
+            List<String> valueList = valueResponse.get();
+            valueList.forEach(value -> {
+                list.add(value);
+            });
         }
 
 //        // jedis 连接池
