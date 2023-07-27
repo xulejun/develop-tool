@@ -15,3 +15,9 @@ find /home -type f -exec ls -s {} \; | sort -n | tail -n 10
 ```shell
 find / -size +100M -exec ls -lh {} \;
 ```
+
+## 日志
+- 模糊查找范围内的日志，前后 50 行
+```shell
+grep 'xxx' catalina.out -C 50
+```
