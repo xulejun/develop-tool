@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * 动态代理模式：
+ * 结构型模式：动态代理模式
  *  代理对象，不需要实现接口，但是目标对象要实现接口，代理对象的生成是利用JDK的API，动态在内存中构建代理对象
  *  可获取多个实现不同接口的对象并调用对应的方法
  *
