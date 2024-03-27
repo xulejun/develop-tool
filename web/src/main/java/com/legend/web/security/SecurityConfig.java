@@ -96,7 +96,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // token 有效时长
                 .tokenValiditySeconds(60)
                 .userDetailsService(userDetailService)
-                // 关闭 csrf 防护
+                // 关闭 csrf 防护，不关闭默认 GET 可以请求，POST 请求出现 403
                 .and().csrf().disable();
         // 403 无权限访问跳转自定义页面
         http.exceptionHandling().accessDeniedPage("/security/unauth");
