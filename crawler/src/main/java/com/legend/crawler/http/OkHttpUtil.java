@@ -54,4 +54,14 @@ public class OkHttpUtil {
         Request request = new Request.Builder().url(url).post(new FormBody.Builder().build()).build();
         return OKHTTP_CLIENT.newCall(request).execute().body().string();
     }
+
+    public static void main(String[] args) throws Exception {
+        String url = "https://elise.vip.sankuai.com/dispatcher/dd/base/line";
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("cityNameList", Lists.newArrayList("无锡市", "湛江市", "遵义市", "上海市", "南昌市", "济南市"));
+        jsonObject.put("bizDt", "20240313");
+        jsonObject.put("batchCode", "1000");
+        String post = postJson(url, jsonObject.toString());
+        System.out.println(post);
+    }
 }
