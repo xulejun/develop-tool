@@ -21,26 +21,33 @@ import java.util.stream.IntStream;
  */
 public class TimeCaculation {
     public static void main(String[] args) throws ParseException {
-        weTogether();
+        String a = "2024-03-01 00:00:00";
+        String b = "2024-03-06 00:00:00";
 
-        String exit = "";
-        while (!"exit".equals(exit)) {
-            System.out.println("请输入起始时间：");
-            Scanner scanner = new Scanner(System.in);
-            // 输入内容
-            String start = scanner.next();
-            exit = start;
-            if (!"exit".equals(exit)) {
-                try {
-                    calculateTime(start);
-                } catch (ParseException e) {
-                    System.out.println("请输入yyyy-MM-dd格式");
-                    scanner = new Scanner(System.in);
-                    start = scanner.next();
-                    calculateTime(start);
-                }
-            }
-        }
+        List<String> datesBetween = getDatesBetween(a.substring(0, 10), b.substring(0, 10));
+        datesBetween.forEach(System.out::println);
+
+
+//        weTogether();
+//
+//        String exit = "";
+//        while (!"exit".equals(exit)) {
+//            System.out.println("请输入起始时间：");
+//            Scanner scanner = new Scanner(System.in);
+//            // 输入内容
+//            String start = scanner.next();
+//            exit = start;
+//            if (!"exit".equals(exit)) {
+//                try {
+//                    calculateTime(start);
+//                } catch (ParseException e) {
+//                    System.out.println("请输入yyyy-MM-dd格式");
+//                    scanner = new Scanner(System.in);
+//                    start = scanner.next();
+//                    calculateTime(start);
+//                }
+//            }
+//        }
     }
 
     public static void weTogether() throws ParseException {
@@ -89,8 +96,9 @@ public class TimeCaculation {
      * @return 当天24点的时间戳
      */
     public static long timeStamp() {
-        long second = LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonth(),
-                LocalDateTime.now().plusDays(1).getDayOfMonth(), 0, 0).toEpochSecond(ZoneOffset.of("+8"));
+//        long second = LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonth(),
+//                LocalDateTime.now().plusDays(1).getDayOfMonth(), 0, 0).toEpochSecond(ZoneOffset.of("+8"));
+        long second = LocalDate.now().plusDays(-1).atStartOfDay().toEpochSecond(ZoneOffset.of("+8"));
         return second * 1000;
     }
 
