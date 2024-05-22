@@ -6,6 +6,8 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author legend xu
@@ -16,7 +18,7 @@ public class PageUtil {
      * 手动分页
      *
      * @param originalList 数据集合
-     * @param groupSize 每页多少个元素
+     * @param groupSize    每页多少个元素
      * @param <T>
      * @return
      */
@@ -32,6 +34,17 @@ public class PageUtil {
             groupedLists.add(groupList);
         }
         return groupedLists;
+    }
+
+    /**
+     * 单个数据类型分页
+     */
+    public static List<List<Long>> page(List<Long> originalList, int pageSize) {
+        // 使用Stream API分割列表
+        List<List<Long>> partitionedList = IntStream.range(0, (originalList.size() + pageSize - 1) / pageSize)
+                .mapToObj(i -> originalList.subList(i * pageSize, Math.min(originalList.size(), (i + 1) * pageSize)))
+                .collect(Collectors.toList());
+        return partitionedList;
     }
 
     public static void main(String[] args) {
