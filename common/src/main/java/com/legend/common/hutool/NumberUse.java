@@ -37,5 +37,12 @@ public class NumberUse {
         System.out.println("随机获取一个UUID:" + UUID.randomUUID().toString());
 
         System.out.println("随机获取一个简化的UUID：" + UUID.randomUUID().toString(true));
+
+        // 保留两位小数
+        int molecule = 1;
+        int denominator = 3;
+        String responseRate = NumberUtil.decimalFormat("#.##%", (double) molecule / (double) denominator);
+        System.out.println("保留两位小数：" + responseRate);
+
     }
 }
