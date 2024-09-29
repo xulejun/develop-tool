@@ -6,6 +6,9 @@ import com.legend.common.entity.User;
 import java.io.IOException;
 import java.io.StringReader;
 import java.lang.reflect.Field;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -88,6 +91,11 @@ public class ConvertUtil {
         list.add(xlj3);
         Map<Integer, User> map = list.stream().collect(Collectors.toMap(User::getId, t -> t));
         System.out.println(map);
+    }
+
+    // 时间戳转LocalDateTime
+    public static void timestampToLocalDateTime(long timestamp) {
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
     }
 
 
