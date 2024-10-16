@@ -98,6 +98,11 @@ public class ConvertUtil {
         LocalDateTime localDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
     }
 
+    // LocalDateTime转时间戳
+    public static void localDateTimeToTimestamp() {
+        long timestamp = LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
 
     public static void main(String[] args) {
 //        arrToList();
