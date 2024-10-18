@@ -2,6 +2,7 @@ package com.legend.common.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -11,18 +12,19 @@ import java.util.zip.GZIPInputStream;
 // 解码 base64，gzip解压
 public class GzipDecompressorUtil {
     public static void main(String[] args) throws Exception{
-        GzipDecompressorUtil util = new GzipDecompressorUtil();
-        String filePath = "/Users/xuxing12/IdeaProjects/develop-tool/common/src/test/resources/test3.txt";
-        String base64GzipData = new String(Files.readAllBytes(Paths.get(filePath)));
+        String filePath3 = "/Users/xuxing12/IdeaProjects/develop-tool/common/src/test/resources/test3.txt";
+        String outJsonPath = "/Users/xuxing12/IdeaProjects/develop-tool/common/src/main/java/com/legend/common/format/JsonFormat2.json";
+        FileWriter fileWriter = new FileWriter(outJsonPath);
+        String base64GzipData = new String(Files.readAllBytes(Paths.get(filePath3)));
         try {
             // 解码 Base64 数据
             byte[] compressedData = Base64.getDecoder().decode(base64GzipData);
-
             // 解压缩 GZIP 数据
             byte[] decompressedData = decompressGzip(compressedData);
-
             // 将解压缩后的数据转换为字符串
             String result = new String(decompressedData, "UTF-8");
+            // 输出
+            fileWriter.write(result);
             System.out.println("解压缩后的数据: " + result);
         } catch (IOException e) {
             e.printStackTrace();
