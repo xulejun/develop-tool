@@ -38,10 +38,8 @@ public class StreamDemo {
         // map 将集合中的元素类型，转换成另一种数据类型
         list.stream().map(PersonBo::getId).forEach(System.out::println);
 
-        // sorted 根据字段属性进行排序
-        list.stream().sorted((u1, u2) -> {
-            return u2.getId().compareTo(u1.getId());
-        }).map(PersonBo::getId).forEach(System.out::println);
+        // sorted 根据字段属性进行倒排
+        list.stream().sorted((u1, u2) -> u2.getId().compareTo(u1.getId())).map(PersonBo::getId).forEach(System.out::println);
 
         // limit限制数————collect将map单个映射转为list集合
         list.stream().map(t -> {
