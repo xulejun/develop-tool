@@ -10,7 +10,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * 国级大蒜贸易
@@ -22,15 +32,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class InternationaleGarlicTest {
-    @Autowired
-    GarlicJob garlicJob;
+//    @Autowired
+//    GarlicJob garlicJob;
 
-    @Test
-    public void methodTest() throws Exception {
-        String url = "http://www.51garlic.com/jg/show-htm-itemid-104251.html";
-        // 数据入库
-        garlicJob.detailUrl(url);
-    }
+
+
+//    @Test
+//    public void methodTest() throws Exception {
+//        String url = "http://www.51garlic.com/jg/show-htm-itemid-104251.html";
+//        // 数据入库
+//        garlicJob.detailUrl(url);
+//    }
 
     public static void main(String[] args) {
         // 列表采集
