@@ -17,7 +17,7 @@ import javax.security.auth.message.AuthException;
  */
 @Slf4j
 @RestControllerAdvice(basePackages = "com.legend.web.controller")
-public class GlobalDealException {
+public class GlobalExceptionHandler {
     @ExceptionHandler(NoHandlerFoundException.class)
     public Result handlerNoFoundException(Exception e) {
         log.error(e.getMessage(), e);
