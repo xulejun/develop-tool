@@ -26,6 +26,32 @@ public class StringSimilarUtil {
     }
 
     /**
+     * 最长公共子序列：https://leetcode.cn/problems/longest-common-subsequence/description/?utm_source=LCUS&utm_medium=ip_redirect&utm_campaign=transfer2china
+     *
+     * @param text1
+     * @param text2
+     * @return
+     */
+    public static int longestCommonSubsequence(String text1, String text2) {
+        int m = text1.length(), n = text2.length();
+        // 定义： 对于 s1[0..i-1] 和 s2[0..j-1], 它们的 lcs 长度是 dp[i][j]
+        // base case: dp[0][..] = dp[..][0] = 0 已初始化
+        int[][] dp = new int[m + 1][n + 1];
+
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                // 状态转移逻辑
+                if (text1.charAt(i - 1) == text2.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } else {
+                    dp[i][j] = Math.max(dp[i][j - 1], dp[i - 1][j]);
+                }
+            }
+        }
+        return dp[m][n];
+    }
+
+    /**
      * Jaro-Winkler
      *
      * @param x
